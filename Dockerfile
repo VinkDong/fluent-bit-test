@@ -16,4 +16,4 @@ RUN set -x \
   && yum -y clean all \
   && bin/fluent-bit --version
 
-CMD ["/root/fluent-bit/build/bin/fluent-bit","-i","stdin","-o","stdout"]
+CMD ["/fluent-bit/build/bin/fluent-bit","-i","stdin","-o","stdout"]
