@@ -7,7 +7,10 @@ RUN set -x \
   httpd-devel pcre-devel yajl-devel libstdc++-devel centos-release-scl-rh cmake' \
   && yum -y --setopt=tsflags=nodocs install pcre openssl-libs zlib bind-utils \
   curl iproute tar strace libevent libxml2 libcurl apr apr-util yajl cyrus-sasl libstdc++ ${buildDeps} \
+  && pwd \
   && git clone https://github.com/fluent/fluent-bit.git \
+  && pwd \
+  && ls -la fluent-bit \
   && cd build \
   && cmake .. \
   && make \
