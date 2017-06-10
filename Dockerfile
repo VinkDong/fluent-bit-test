@@ -2,7 +2,7 @@ FROM centos:latest
 
 RUN set -x \
   && PATH=/opt/rh/devtoolset-3/root/usr/bin:$PATH \
-  && export buildDeps='pcre-devel openssl-devel gcc make zlib-devel readline-devel \
+  && export buildDeps='pcre-devel openssl-devel gcc g++ make zlib-devel readline-devel \
   openssl patch git apr-devel apr-util-devel libevent-devel libxml2-devel libcurl-devel \
   httpd-devel pcre-devel yajl-devel libstdc++-devel centos-release-scl-rh cmake' \
   && yum -y --setopt=tsflags=nodocs install pcre openssl-libs zlib bind-utils \
