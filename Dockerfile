@@ -4,7 +4,9 @@ RUN \
   yum -y update \
   && yum -y install epel-release \
   && yum makecache fast \
-  && yum -y install openssh sshpass
+  && yum -y install openssh-clients expect
+
+COPY expect_scp.sh /expect_scp
   
 RUN set -x \
   && PATH=/opt/rh/devtoolset-3/root/usr/bin:$PATH \
@@ -18,7 +20,7 @@ RUN set -x \
   && cd fluent-bit/build \
   && cmake .. \
   && make \
-  && sshpass -p "docker" scp ./bin/fluent-bit goset@sss.wenqi.us:/cdn/share/dockerbuild/ \
+  && /expect_scp sss.wenqi.us goset docker /fluent-bit/build/bin/fluent-bit /cdn/share/dockerbuild/ \
   && yum -y autoremove $buildDeps devtoolset-3-gcc devtoolset-3-gcc-c++ \
   && yum -y clean all \
   && bin/fluent-bit --version
